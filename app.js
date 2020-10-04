@@ -1,8 +1,21 @@
 const express = require("express");
-const app = express();
-
+const mongoose = require("mongoose");
 require("dotenv").config();
 
+// app
+const app = express();
+
+// db
+
+mongoose
+  .connect(process.env.DATABASE, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log("Db Connected"));
+
+// routes
 app.get("/", (req, res) => {
   res.send("Hello from ecom updated");
 });
